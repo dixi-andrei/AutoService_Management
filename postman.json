@@ -1,0 +1,1038 @@
+{
+  "info": {
+    "_postman_id": "dce4b6a1-5f7d-4a77-b2b5-92ba41d8d7a7",
+    "name": "AUTO SERVICE MANAGEMENT POSTMAN",
+    "description": "Testare api service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "12345678"
+  },
+  "item": [
+    {
+      "name": "Clients",
+      "item": [
+        {
+          "name": "Get All Clients",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/clients",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "clients"
+              ]
+            },
+            "description": "Obtine lista tuturor clientilor"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Client by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/clients/{{clientId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "clients",
+                "{{clientId}}"
+              ]
+            },
+            "description": "Obtine un client dupa ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Client",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Ion\",\n  \"lastName\": \"Popescu\",\n  \"phoneNumbers\": [\"0722123456\"],\n  \"email\": \"ion.popescu@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:54321/api/clients",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "clients"
+              ]
+            },
+            "description": "Adauga un client nou"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Client",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Ion\",\n  \"lastName\": \"Ionescu\",\n  \"phoneNumbers\": [\"0722123456\", \"0733123456\"],\n  \"email\": \"ion.ionescu@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:54321/api/clients/{{clientId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "clients",
+                "{{clientId}}"
+              ]
+            },
+            "description": "Actualizeaza un client existent"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Client",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/clients/{{clientId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "clients",
+                "{{clientId}}"
+              ]
+            },
+            "description": "Sterge un client"
+          },
+          "response": []
+        },
+        {
+          "name": "Deactivate Client",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/clients/{{clientId}}/deactivate",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "clients",
+                "{{clientId}}",
+                "deactivate"
+              ]
+            },
+            "description": "Dezactiveaza un client (soft delete)"
+          },
+          "response": []
+        },
+        {
+          "name": "Reactivate Client",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/clients/{{clientId}}/reactivate",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "clients",
+                "{{clientId}}",
+                "reactivate"
+              ]
+            },
+            "description": "Reactiveaza un client"
+          },
+          "response": []
+        }
+      ],
+      "description": "Operatiuni pentru gestionarea clientilor"
+    },
+    {
+      "name": "Cars",
+      "item": [
+        {
+          "name": "Get All Cars",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/cars",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "cars"
+              ]
+            },
+            "description": "Obtine lista tuturor masinilor"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Car by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/cars/{{carId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "cars",
+                "{{carId}}"
+              ]
+            },
+            "description": "Obtine o masina dupa ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Client Cars",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/cars/client/{{clientId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "cars",
+                "client",
+                "{{clientId}}"
+              ]
+            },
+            "description": "Obtine toate masinile unui client"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Car",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientId\": \"{{clientId}}\",\n  \"licensePlate\": \"B 123 ABC\",\n  \"vin\": \"WVWZZZ1JZXW123456\",\n  \"make\": \"Volkswagen\",\n  \"model\": \"Golf\",\n  \"year\": 2018,\n  \"engineType\": \"diesel\",\n  \"engineCapacity\": 1998,\n  \"horsePower\": 150\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:54321/api/cars",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "cars"
+              ]
+            },
+            "description": "Adauga o masina noua"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Car",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"make\": \"Volkswagen\",\n  \"model\": \"Golf GTI\",\n  \"year\": 2019,\n  \"horsePower\": 180\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:54321/api/cars/{{carId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "cars",
+                "{{carId}}"
+              ]
+            },
+            "description": "Actualizeaza o masina existenta"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Car",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/cars/{{carId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "cars",
+                "{{carId}}"
+              ]
+            },
+            "description": "Sterge o masina"
+          },
+          "response": []
+        },
+        {
+          "name": "Deactivate Car",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/cars/{{carId}}/deactivate",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "cars",
+                "{{carId}}",
+                "deactivate"
+              ]
+            },
+            "description": "Dezactiveaza o masina (soft delete)"
+          },
+          "response": []
+        },
+        {
+          "name": "Reactivate Car",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/cars/{{carId}}/reactivate",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "cars",
+                "{{carId}}",
+                "reactivate"
+              ]
+            },
+            "description": "Reactiveaza o masina"
+          },
+          "response": []
+        }
+      ],
+      "description": "Operatiuni pentru gestionarea masinilor"
+    },
+    {
+      "name": "Appointments",
+      "item": [
+        {
+          "name": "Get All Appointments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/appointments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "appointments"
+              ]
+            },
+            "description": "Obtine lista tuturor programarilor"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Appointment by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/appointments/{{appointmentId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "appointments",
+                "{{appointmentId}}"
+              ]
+            },
+            "description": "Obtine o programare dupa ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Client Appointments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/appointments/client/{{clientId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "appointments",
+                "client",
+                "{{clientId}}"
+              ]
+            },
+            "description": "Obtine toate programarile unui client"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Car Appointments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/appointments/car/{{carId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "appointments",
+                "car",
+                "{{carId}}"
+              ]
+            },
+            "description": "Obtine toate programarile pentru o masina"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Appointment",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientId\": \"{{clientId}}\",\n  \"carId\": \"{{carId}}\",\n  \"date\": \"2025-05-15T10:00:00.000Z\",\n  \"duration\": 60,\n  \"serviceType\": \"Revizie periodica\",\n  \"contactMethod\": \"phone\",\n  \"notes\": \"Schimb ulei si filtre\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:54321/api/appointments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "appointments"
+              ]
+            },
+            "description": "Adauga o programare noua"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Appointment",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"2025-05-16T14:00:00.000Z\",\n  \"duration\": 90,\n  \"notes\": \"Schimb ulei, filtre si verificare frane\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:54321/api/appointments/{{appointmentId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "appointments",
+                "{{appointmentId}}"
+              ]
+            },
+            "description": "Actualizeaza o programare existenta"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Appointment",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/appointments/{{appointmentId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "appointments",
+                "{{appointmentId}}"
+              ]
+            },
+            "description": "Sterge o programare"
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel Appointment",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/appointments/{{appointmentId}}/cancel",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "appointments",
+                "{{appointmentId}}",
+                "cancel"
+              ]
+            },
+            "description": "Anuleaza o programare"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Appointment Status",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"in-progress\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:54321/api/appointments/{{appointmentId}}/status",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "appointments",
+                "{{appointmentId}}",
+                "status"
+              ]
+            },
+            "description": "Actualizeaza statusul unei programari"
+          },
+          "response": []
+        }
+      ],
+      "description": "Operatiuni pentru gestionarea programarilor"
+    },
+    {
+      "name": "Services",
+      "item": [
+        {
+          "name": "Get All Services",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/services",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "services"
+              ]
+            },
+            "description": "Obtine lista tuturor serviciilor de reparatii"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Service by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/services/{{serviceId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "services",
+                "{{serviceId}}"
+              ]
+            },
+            "description": "Obtine un serviciu de reparatii dupa ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Service by Appointment",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/services/appointment/{{appointmentId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "services",
+                "appointment",
+                "{{appointmentId}}"
+              ]
+            },
+            "description": "Obtine serviciul asociat unei programari"
+          },
+          "response": []
+        },
+        {
+          "name": "Receive Car for Service",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentId\": \"{{appointmentId}}\",\n  \"visualIssues\": [\"Zgarietura pe usa soferului\"],\n  \"clientReportedIssues\": [\"Bateria se descarca rapid\"],\n  \"purpose\": \"Verificare sistem\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:54321/api/services/receive",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "services",
+                "receive"
+              ]
+            },
+            "description": "Adauga un serviciu nou (primire masina)"
+          },
+          "response": []
+        },
+        {
+          "name": "Process Car Service",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"operations\": {\n    \"description\": \"Verificare completa sistem. Actualizare software management\",\n    \"replacedParts\": [\"Filtru habitaclu\"],\n    \"detectedIssues\": [\"Baterie degradata - autonomie 70% din capacitatea initiala\"],\n    \"resolvedIssues\": true\n  },\n  \"actualDuration\": 70\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:54321/api/services/{{serviceId}}/process",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "services",
+                "{{serviceId}}",
+                "process"
+              ]
+            },
+            "description": "Actualizeaza informatiile despre procesarea unei masini"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Service",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"initialState\": {\n    \"visualIssues\": [\"Zgarietura pe usa soferului\", \"Faruri mate\"],\n    \"clientReportedIssues\": [\"Bateria se descarca rapid\", \"Zgomot la rulare\"],\n    \"purpose\": \"Verificare completa\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:54321/api/services/{{serviceId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "services",
+                "{{serviceId}}"
+              ]
+            },
+            "description": "Actualizeaza un serviciu existent"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Service",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/services/{{serviceId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "services",
+                "{{serviceId}}"
+              ]
+            },
+            "description": "Sterge un serviciu"
+          },
+          "response": []
+        }
+      ],
+      "description": "Operatiuni pentru gestionarea serviciilor de reparatii"
+    },
+    {
+      "name": "Loyalty",
+      "item": [
+        {
+          "name": "Get All Loyalty Records",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/loyalty",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "loyalty"
+              ]
+            },
+            "description": "Obtine toate inregistrarile de loialitate"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Loyalty Record by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/loyalty/{{loyaltyId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "loyalty",
+                "{{loyaltyId}}"
+              ]
+            },
+            "description": "Obtine inregistrarea de loialitate dupa ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Client Loyalty",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/loyalty/client/{{clientId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "loyalty",
+                "client",
+                "{{clientId}}"
+              ]
+            },
+            "description": "Obtine inregistrarea de loialitate a unui client"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Client Loyalty",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/loyalty/client/{{clientId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "loyalty",
+                "client",
+                "{{clientId}}"
+              ]
+            },
+            "description": "Actualizeaza/creeaza inregistrarea de loialitate a unui client"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Loyalty Record",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:54321/api/loyalty/{{loyaltyId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "loyalty",
+                "{{loyaltyId}}"
+              ]
+            },
+            "description": "Sterge o inregistrare de loialitate"
+          },
+          "response": []
+        },
+        {
+          "name": "Calculate Discount",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientId\": \"{{clientId}}\",\n  \"amount\": 1000\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:54321/api/loyalty/calculate-discount",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "loyalty",
+                "calculate-discount"
+              ]
+            },
+            "description": "Calculeaza reducerea pentru un client"
+          },
+          "response": []
+        },
+        {
+          "name": "Manually Update Loyalty Class",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"loyaltyClass\": \"A4\",\n  \"discountPercentage\": 12\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:54321/api/loyalty/client/{{clientId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "54321",
+              "path": [
+                "api",
+                "loyalty",
+                "client",
+                "{{clientId}}"
+              ]
+            },
+            "description": "Actualizeaza manual clasa de loialitate a unui client"
+          },
+          "response": []
+        }
+      ],
+      "description": "Operatiuni pentru gestionarea sistemului de loialitate"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "clientId",
+      "value": "",
+      "description": "ID-ul clientului creat"
+    },
+    {
+      "key": "carId",
+      "value": "",
+      "description": "ID-ul masinii create"
+    },
+    {
+      "key": "appointmentId",
+      "value": "",
+      "description": "ID-ul programarii create"
+    },
+    {
+      "key": "serviceId",
+      "value": "",
+      "description": "ID-ul serviciului creat"
+    },
+    {
+      "key": "loyaltyId",
+      "value": "",
+      "description": "ID-ul inregistrarii de loialitate"
+    }
+  ]
+}

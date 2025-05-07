@@ -1,0 +1,1 @@
+Fisierul `postman.json` din repository contine colectia Postman pentru testarea API-ului.
