@@ -60,20 +60,3 @@ app.listen(PORT, () => {
 
 // Nu exportăm app ca default
 export { app };
-
-// Definim rutele API
-app.use('/api/clients', clientRoutes);
-app.use('/api/cars', carRoutes);
-app.use('/api/appointments', appointmentRoutes);
-app.use('/api/services', serviceRoutes);
-
-// Rută de bază pentru a verifica dacă serverul funcționează
-app.get('/', (req, res) => {
-    res.send('API pentru Service Auto funcționează!');
-});
-
-// Pornirea serverului
-app.listen(PORT, () => {
-    console.log(`Serverul rulează pe portul ${PORT}`);
-});
-export default app;

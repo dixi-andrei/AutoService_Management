@@ -1,0 +1,39 @@
+[
+  {
+    "id": "49b113ba-4ab5-4828-9723-896c203ccca4",
+    "firstName": "Ion",
+    "lastName": "Popescu",
+    "phoneNumbers": [
+      "0722123456"
+    ],
+    "email": "ion.popescu@example.com",
+    "isActive": true,
+    "createdAt": "2025-05-07T11:25:43.432Z",
+    "updatedAt": "2025-05-07T11:25:43.432Z"
+  },
+  {
+    "id": "08d17a9b-4d0c-482c-9d07-afb7093f2206",
+    "firstName": "Maria",
+    "lastName": "Ionescu",
+    "phoneNumbers": [
+      "0733123456",
+      "0744123456"
+    ],
+    "email": "maria.ionescu@example.com",
+    "isActive": true,
+    "createdAt": "2025-05-07T11:25:43.432Z",
+    "updatedAt": "2025-05-07T11:25:43.432Z"
+  },
+  {
+    "id": "8e0279df-14fa-49a7-bfc5-0281bb4bc08c",
+    "firstName": "Andrei",
+    "lastName": "Dumitrescu",
+    "phoneNumbers": [
+      "0755123456"
+    ],
+    "email": "andrei.dumitrescu@example.com",
+    "isActive": true,
+    "createdAt": "2025-05-07T11:25:43.432Z",
+    "updatedAt": "2025-05-07T11:25:43.432Z"
+  }
+]

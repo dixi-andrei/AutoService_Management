@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "id": "0c7b7857-ad3a-4973-98ed-df39d2732750",
+    "appointmentId": "b2b2e51e-b72d-45a7-ae99-f6ed7cfdbe1c",
+    "initialState": {
+      "visualIssues": [
+        "Zgârietură pe ușa șoferului"
+      ],
+      "clientReportedIssues": [
+        "Bateria se descarcă rapid",
+        "Autonomie scăzută în modul electric"
+      ],
+      "purpose": "Verificare sistem hibrid"
+    },
+    "operations": {
+      "description": "Verificare completă sistem hibrid. Actualizare software management baterie.",
+      "replacedParts": [
+        "Filtru habitaclu"
+      ],
+      "detectedIssues": [
+        "Baterie hibrid degradată - autonomie 70% din capacitatea inițială"
+      ],
+      "resolvedIssues": true
+    },
+    "actualDuration": 100,
+    "createdAt": "2025-05-07T11:25:43.433Z",
+    "updatedAt": "2025-05-07T11:25:43.433Z"
+  }
+]

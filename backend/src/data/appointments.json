@@ -1,1 +1,41 @@
-[]
+[
+  {
+    "id": "a5efd10e-66f4-4f2b-b437-ef069a33a6f0",
+    "clientId": "49b113ba-4ab5-4828-9723-896c203ccca4",
+    "carId": "af39a1d5-29f9-4dc9-9ec4-a4c8c7ca4456",
+    "date": "2025-05-07T07:00:00.000Z",
+    "duration": 60,
+    "serviceType": "Revizie periodica",
+    "contactMethod": "phone",
+    "status": "scheduled",
+    "notes": "Clientul va veni personal cu masina",
+    "createdAt": "2025-05-07T11:25:43.433Z",
+    "updatedAt": "2025-05-07T11:25:43.433Z"
+  },
+  {
+    "id": "7419dadd-c2b4-40b9-b4e2-f224ca142293",
+    "clientId": "08d17a9b-4d0c-482c-9d07-afb7093f2206",
+    "carId": "25d6729d-c159-44d2-8a3d-8402de33d423",
+    "date": "2025-05-08T11:00:00.000Z",
+    "duration": 120,
+    "serviceType": "Reparație frane",
+    "contactMethod": "email",
+    "status": "scheduled",
+    "notes": "Clientul a raportat zgomote la franare",
+    "createdAt": "2025-05-07T11:25:43.433Z",
+    "updatedAt": "2025-05-07T11:25:43.433Z"
+  },
+  {
+    "id": "b2b2e51e-b72d-45a7-ae99-f6ed7cfdbe1c",
+    "clientId": "8e0279df-14fa-49a7-bfc5-0281bb4bc08c",
+    "carId": "04438189-9e9e-418a-a105-4f0370e9a3e1",
+    "date": "2025-05-06T06:00:00.000Z",
+    "duration": 90,
+    "serviceType": "Verificare sistem hibrid",
+    "contactMethod": "in-person",
+    "status": "completed",
+    "notes": "Bateria nu mai tine la fel de mult",
+    "createdAt": "2025-05-07T11:25:43.433Z",
+    "updatedAt": "2025-05-07T11:25:43.433Z"
+  }
+]

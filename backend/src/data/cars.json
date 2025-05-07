@@ -1,1 +1,66 @@
-[]
+[
+  {
+    "id": "af39a1d5-29f9-4dc9-9ec4-a4c8c7ca4456",
+    "clientId": "49b113ba-4ab5-4828-9723-896c203ccca4",
+    "licensePlate": "B 123 ABC",
+    "vin": "WVWZZZ1JZXW123456",
+    "make": "Volkswagen",
+    "model": "Golf",
+    "year": 2018,
+    "engineType": "diesel",
+    "engineCapacity": 1998,
+    "horsePower": 150,
+    "kilowatts": 110.33,
+    "isActive": true,
+    "createdAt": "2025-05-07T11:25:43.432Z",
+    "updatedAt": "2025-05-07T11:25:43.432Z"
+  },
+  {
+    "id": "25d6729d-c159-44d2-8a3d-8402de33d423",
+    "clientId": "08d17a9b-4d0c-482c-9d07-afb7093f2206",
+    "licensePlate": "B 456 DEF",
+    "vin": "WAUZZZ8TZXA654321",
+    "make": "Audi",
+    "model": "A4",
+    "year": 2020,
+    "engineType": "gasoline",
+    "engineCapacity": 1984,
+    "horsePower": 190,
+    "kilowatts": 139.75,
+    "isActive": true,
+    "createdAt": "2025-05-07T11:25:43.432Z",
+    "updatedAt": "2025-05-07T11:25:43.432Z"
+  },
+  {
+    "id": "082c4806-77e0-47a3-9f11-27e3e4b6f84b",
+    "clientId": "08d17a9b-4d0c-482c-9d07-afb7093f2206",
+    "licensePlate": "B 789 GHI",
+    "vin": "WBAZW31080L789012",
+    "make": "BMW",
+    "model": "X3",
+    "year": 2021,
+    "engineType": "hybrid",
+    "engineCapacity": 1998,
+    "horsePower": 292,
+    "kilowatts": 214.77,
+    "isActive": true,
+    "createdAt": "2025-05-07T11:25:43.433Z",
+    "updatedAt": "2025-05-07T11:25:43.433Z"
+  },
+  {
+    "id": "04438189-9e9e-418a-a105-4f0370e9a3e1",
+    "clientId": "8e0279df-14fa-49a7-bfc5-0281bb4bc08c",
+    "licensePlate": "B 101 JKL",
+    "vin": "SB1BR56L50E987654",
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 2019,
+    "engineType": "hybrid",
+    "engineCapacity": 1798,
+    "horsePower": 122,
+    "kilowatts": 89.73,
+    "isActive": true,
+    "createdAt": "2025-05-07T11:25:43.433Z",
+    "updatedAt": "2025-05-07T11:25:43.433Z"
+  }
+]

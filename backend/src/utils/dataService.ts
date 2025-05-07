@@ -40,7 +40,8 @@ export class DataService<T extends { id: string }> {
     async getAll(): Promise<T[]> {
         try {
             const data = await fs.promises.readFile(this.filePath, 'utf8');
-            return JSON.parse(data);
+            // Handle empty file case
+            return data.trim() ? JSON.parse(data) : [];
         } catch (error) {
             console.error('Eroare la citirea datelor:', error);
             return [];

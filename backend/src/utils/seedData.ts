@@ -139,11 +139,11 @@ export const seedData = async () => {
             clientId: clients[0].id,
             carId: cars[0].id,
             date: todayAt10,
-            duration: 60, // 60 minute
-            serviceType: 'Revizie periodică',
+            duration: 60,
+            serviceType: 'Revizie periodica',
             contactMethod: 'phone',
             status: 'scheduled',
-            notes: 'Clientul va veni personal cu mașina',
+            notes: 'Clientul va veni personal cu masina',
             createdAt: new Date(),
             updatedAt: new Date()
         },
@@ -153,10 +153,10 @@ export const seedData = async () => {
             carId: cars[1].id,
             date: tomorrowAt14,
             duration: 120, // 120 minute
-            serviceType: 'Reparație frâne',
+            serviceType: 'Reparație frane',
             contactMethod: 'email',
             status: 'scheduled',
-            notes: 'Clientul a raportat zgomote la frânare',
+            notes: 'Clientul a raportat zgomote la franare',
             createdAt: new Date(),
             updatedAt: new Date()
         },
@@ -169,7 +169,7 @@ export const seedData = async () => {
             serviceType: 'Verificare sistem hibrid',
             contactMethod: 'in-person',
             status: 'completed',
-            notes: 'Bateria nu mai ține la fel de mult',
+            notes: 'Bateria nu mai tine la fel de mult',
             createdAt: new Date(),
             updatedAt: new Date()
         }
