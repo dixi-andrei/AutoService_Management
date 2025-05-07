@@ -3,7 +3,7 @@ import { carController } from '../controllers/carController';
 
 const router = express.Router();
 
-// Rute pentru mașini
+//rutele pentru masini
 router.get('/', carController.getAllCars);
 router.get('/:id', carController.getCarById);
 router.post('/', carController.createCar);
@@ -12,7 +12,7 @@ router.delete('/:id', carController.deleteCar);
 router.patch('/:id/deactivate', carController.deactivateCar);
 router.patch('/:id/reactivate', carController.reactivateCar);
 
-// Rută specializată pentru mașinile unui client
+//rutele pentru masini in functie de client adica detinatorul masinii
 router.get('/client/:clientId', carController.getClientCars);
 
 export default router;

@@ -2,21 +2,16 @@ import { Request, Response } from 'express';
 import { DataService } from '../utils/dataService';
 import { Client } from '../models/interfaces';
 
-// Inițializăm serviciul de date pentru clienți
 const clientService = new DataService<Client>('clients.json');
 
-/**
- * Controller pentru operațiunile cu clienți
- */
 export const clientController = {
-    /**
-     * Obține toți clienții
-     */
+
+    //toti clientii
     getAllClients: async (req: Request, res: Response) => {
         try {
             let clients = await clientService.getAll();
 
-            // Filtrăm după status dacă există parametrul în query
+            //filtrare dupa status
             const { status } = req.query;
             if (status === 'active') {
                 clients = clients.filter(client => client.isActive);
@@ -26,38 +21,33 @@ export const clientController = {
 
             res.status(200).json(clients);
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la obținerea clienților', error });
+            res.status(500).json({ message: 'Eroare la obtinerea clientilor', error });
         }
     },
 
-    /**
-     * Obține un client după ID
-     */
+    //client dupa id
     getClientById: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
             const client = await clientService.getById(id);
 
             if (!client) {
-                return res.status(404).json({ message: 'Clientul nu a fost găsit' });
+                return res.status(404).json({ message: 'Clientul nu a fost gasit' });
             }
 
             res.status(200).json(client);
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la obținerea clientului', error });
+            res.status(500).json({ message: 'Eroare la obtinerea clientului', error });
         }
     },
 
-    /**
-     * Adaugă un client nou
-     */
+    //post client
     createClient: async (req: Request, res: Response) => {
         try {
             const { firstName, lastName, phoneNumbers, email } = req.body;
 
-            // Validare
             if (!firstName || !lastName || !phoneNumbers || !email) {
-                return res.status(400).json({ message: 'Toate câmpurile sunt obligatorii' });
+                return res.status(400).json({ message: 'Toate campurile sunt obligatorii' });
             }
 
             const clientData: Omit<Client, 'id'> = {
@@ -78,9 +68,7 @@ export const clientController = {
         }
     },
 
-    /**
-     * Actualizează un client existent
-     */
+    //put client
     updateClient: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
@@ -89,7 +77,7 @@ export const clientController = {
             const updatedClient = await clientService.update(id, updates);
 
             if (!updatedClient) {
-                return res.status(404).json({ message: 'Clientul nu a fost găsit' });
+                return res.status(404).json({ message: 'Clientul nu a fost gasit' });
             }
 
             res.status(200).json(updatedClient);
@@ -98,34 +86,30 @@ export const clientController = {
         }
     },
 
-    /**
-     * Șterge un client
-     */
+    //stergere client
     deleteClient: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
             const success = await clientService.delete(id);
 
             if (!success) {
-                return res.status(404).json({ message: 'Clientul nu a fost găsit' });
+                return res.status(404).json({ message: 'Clientul nu a fost gasit' });
             }
 
-            res.status(200).json({ message: 'Client șters cu succes' });
+            res.status(200).json({ message: 'Client sters cu succes' });
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la ștergerea clientului', error });
+            res.status(500).json({ message: 'Eroare la stergerea clientului', error });
         }
     },
 
-    /**
-     * Dezactivează un client (soft delete)
-     */
+    //dezactivare client(soft delete)
     deactivateClient: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
             const deactivatedClient = await clientService.deactivate(id);
 
             if (!deactivatedClient) {
-                return res.status(404).json({ message: 'Clientul nu a fost găsit' });
+                return res.status(404).json({ message: 'Clientul nu a fost gasit' });
             }
 
             res.status(200).json({ message: 'Client dezactivat cu succes', client: deactivatedClient });
@@ -134,16 +118,14 @@ export const clientController = {
         }
     },
 
-    /**
-     * Reactivează un client
-     */
+    //reactivare client
     reactivateClient: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
             const reactivatedClient = await clientService.reactivate(id);
 
             if (!reactivatedClient) {
-                return res.status(404).json({ message: 'Clientul nu a fost găsit' });
+                return res.status(404).json({ message: 'Clientul nu a fost gasit' });
             }
 
             res.status(200).json({ message: 'Client reactivat cu succes', client: reactivatedClient });

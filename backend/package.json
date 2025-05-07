@@ -1,7 +1,7 @@
 {
   "name": "auto-service-backend",
   "version": "1.0.0",
-  "description": "Backend pentru aplicația de gestionare a unui service auto",
+  "description": "Backend pentru aplicatia de gestionare a unui service auto",
   "main": "dist/server.ts",
   "scripts": {
     "start": "ts-node src/server.ts",

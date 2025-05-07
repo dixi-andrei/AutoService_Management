@@ -3,7 +3,7 @@ import { clientController } from '../controllers/clientController';
 
 const router = express.Router();
 
-// Rute pentru clienți
+//rutele pentru clienti
 router.get('/', clientController.getAllClients);
 router.get('/:id', clientController.getClientById);
 router.post('/', clientController.createClient);

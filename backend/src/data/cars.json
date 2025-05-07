@@ -1,7 +1,7 @@
 [
   {
-    "id": "af39a1d5-29f9-4dc9-9ec4-a4c8c7ca4456",
-    "clientId": "49b113ba-4ab5-4828-9723-896c203ccca4",
+    "id": "7ece26c9-2da5-43d3-b884-cf7395e63d45",
+    "clientId": "15954d52-173c-4d15-b09a-6666966ff89d",
     "licensePlate": "B 123 ABC",
     "vin": "WVWZZZ1JZXW123456",
     "make": "Volkswagen",
@@ -12,12 +12,12 @@
     "horsePower": 150,
     "kilowatts": 110.33,
     "isActive": true,
-    "createdAt": "2025-05-07T11:25:43.432Z",
-    "updatedAt": "2025-05-07T11:25:43.432Z"
+    "createdAt": "2025-05-07T12:45:55.848Z",
+    "updatedAt": "2025-05-07T12:45:55.848Z"
   },
   {
-    "id": "25d6729d-c159-44d2-8a3d-8402de33d423",
-    "clientId": "08d17a9b-4d0c-482c-9d07-afb7093f2206",
+    "id": "3fa8d83c-dd18-4f79-8956-8b7fc2bb98b7",
+    "clientId": "6407a266-5986-4e86-8ab1-305d12e6dce1",
     "licensePlate": "B 456 DEF",
     "vin": "WAUZZZ8TZXA654321",
     "make": "Audi",
@@ -28,12 +28,12 @@
     "horsePower": 190,
     "kilowatts": 139.75,
     "isActive": true,
-    "createdAt": "2025-05-07T11:25:43.432Z",
-    "updatedAt": "2025-05-07T11:25:43.432Z"
+    "createdAt": "2025-05-07T12:45:55.848Z",
+    "updatedAt": "2025-05-07T12:45:55.848Z"
   },
   {
-    "id": "082c4806-77e0-47a3-9f11-27e3e4b6f84b",
-    "clientId": "08d17a9b-4d0c-482c-9d07-afb7093f2206",
+    "id": "b9dd06f2-82bc-4fc3-83ac-bd4fdb0d91d6",
+    "clientId": "6407a266-5986-4e86-8ab1-305d12e6dce1",
     "licensePlate": "B 789 GHI",
     "vin": "WBAZW31080L789012",
     "make": "BMW",
@@ -44,12 +44,12 @@
     "horsePower": 292,
     "kilowatts": 214.77,
     "isActive": true,
-    "createdAt": "2025-05-07T11:25:43.433Z",
-    "updatedAt": "2025-05-07T11:25:43.433Z"
+    "createdAt": "2025-05-07T12:45:55.848Z",
+    "updatedAt": "2025-05-07T12:45:55.848Z"
   },
   {
-    "id": "04438189-9e9e-418a-a105-4f0370e9a3e1",
-    "clientId": "8e0279df-14fa-49a7-bfc5-0281bb4bc08c",
+    "id": "b2836692-86b3-4d02-9088-98a154795586",
+    "clientId": "7d6b9486-301b-46b0-a666-046d4baf6c92",
     "licensePlate": "B 101 JKL",
     "vin": "SB1BR56L50E987654",
     "make": "Toyota",
@@ -60,7 +60,7 @@
     "horsePower": 122,
     "kilowatts": 89.73,
     "isActive": true,
-    "createdAt": "2025-05-07T11:25:43.433Z",
-    "updatedAt": "2025-05-07T11:25:43.433Z"
+    "createdAt": "2025-05-07T12:45:55.848Z",
+    "updatedAt": "2025-05-07T12:45:55.848Z"
   }
 ]

@@ -2,28 +2,23 @@ import { Request, Response } from 'express';
 import { DataService } from '../utils/dataService';
 import { Car } from '../models/interfaces';
 
-// Inițializăm serviciul de date pentru mașini
 const carService = new DataService<Car>('cars.json');
 
-/**
- * Controller pentru operațiunile cu mașini
- */
 export const carController = {
-    /**
-     * Obține toate mașinile
-     */
+
+    //toate masinile
     getAllCars: async (req: Request, res: Response) => {
         try {
             let cars = await carService.getAll();
 
-            // Filtrăm după clientId dacă există
+            //filtrare dupa clientId
             const { clientId, status } = req.query;
 
             if (clientId) {
                 cars = cars.filter(car => car.clientId === clientId);
             }
 
-            // Filtrăm după status dacă există parametrul în query
+            //filtrare dupa status
             if (status === 'active') {
                 cars = cars.filter(car => car.isActive);
             } else if (status === 'inactive') {
@@ -32,31 +27,27 @@ export const carController = {
 
             res.status(200).json(cars);
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la obținerea mașinilor', error });
+            res.status(500).json({ message: 'Eroare la obtinerea masinilor', error });
         }
     },
 
-    /**
-     * Obține o mașină după ID
-     */
+    //masina dupa id
     getCarById: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
             const car = await carService.getById(id);
 
             if (!car) {
-                return res.status(404).json({ message: 'Mașina nu a fost găsită' });
+                return res.status(404).json({ message: 'Masina nu a fost gasita' });
             }
 
             res.status(200).json(car);
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la obținerea mașinii', error });
+            res.status(500).json({ message: 'Eroare la obtinerea masinii', error });
         }
     },
 
-    /**
-     * Adaugă o mașină nouă
-     */
+    //post masina
     createCar: async (req: Request, res: Response) => {
         try {
             const {
@@ -64,12 +55,10 @@ export const carController = {
                 engineType, engineCapacity, horsePower
             } = req.body;
 
-            // Validare
             if (!clientId || !licensePlate || !vin || !make || !model || !year || !engineType) {
-                return res.status(400).json({ message: 'Câmpurile obligatorii lipsesc' });
+                return res.status(400).json({ message: 'Campurile obligatorii lipsesc' });
             }
 
-            // Calcularea kilowatts din cai putere (1 CP ≈ 0.7355 kW)
             const hpNumber = horsePower ? parseInt(horsePower.toString()) : 0;
             const kilowatts = hpNumber ? Math.round(hpNumber * 0.7355 * 100) / 100 : 0;
 
@@ -93,19 +82,16 @@ export const carController = {
 
             res.status(201).json(newCar);
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la crearea mașinii', error });
+            res.status(500).json({ message: 'Eroare la crearea masinii', error });
         }
     },
 
-    /**
-     * Actualizează o mașină existentă
-     */
+    //put masina
     updateCar: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
             const updates: Partial<Car> = req.body;
 
-            // Recalcularea kilowatts dacă se actualizează horsePower
             if (updates.horsePower) {
                 updates.kilowatts = Math.round(updates.horsePower * 0.7355 * 100) / 100;
             }
@@ -113,72 +99,64 @@ export const carController = {
             const updatedCar = await carService.update(id, updates);
 
             if (!updatedCar) {
-                return res.status(404).json({ message: 'Mașina nu a fost găsită' });
+                return res.status(404).json({ message: 'Masina nu a fost gasita' });
             }
 
             res.status(200).json(updatedCar);
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la actualizarea mașinii', error });
+            res.status(500).json({ message: 'Eroare la actualizarea masinii', error });
         }
     },
 
-    /**
-     * Șterge o mașină
-     */
+    //stergere masina
     deleteCar: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
             const success = await carService.delete(id);
 
             if (!success) {
-                return res.status(404).json({ message: 'Mașina nu a fost găsită' });
+                return res.status(404).json({ message: 'Masina nu a fost gasita' });
             }
 
-            res.status(200).json({ message: 'Mașină ștearsă cu succes' });
+            res.status(200).json({ message: 'Masina stearsa cu succes' });
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la ștergerea mașinii', error });
+            res.status(500).json({ message: 'Eroare la stergerea masinii', error });
         }
     },
 
-    /**
-     * Dezactivează o mașină (soft delete)
-     */
+    //dezactivare masina(soft delete)
     deactivateCar: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
             const deactivatedCar = await carService.deactivate(id);
 
             if (!deactivatedCar) {
-                return res.status(404).json({ message: 'Mașina nu a fost găsită' });
+                return res.status(404).json({ message: 'Masina nu a fost gasita' });
             }
 
-            res.status(200).json({ message: 'Mașină dezactivată cu succes', car: deactivatedCar });
+            res.status(200).json({ message: 'Masina dezactivata cu succes', car: deactivatedCar });
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la dezactivarea mașinii', error });
+            res.status(500).json({ message: 'Eroare la dezactivarea masinii', error });
         }
     },
 
-    /**
-     * Reactivează o mașină
-     */
+    //reactivare masina
     reactivateCar: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
             const reactivatedCar = await carService.reactivate(id);
 
             if (!reactivatedCar) {
-                return res.status(404).json({ message: 'Mașina nu a fost găsită' });
+                return res.status(404).json({ message: 'Masina nu a fost gasita' });
             }
 
-            res.status(200).json({ message: 'Mașină reactivată cu succes', car: reactivatedCar });
+            res.status(200).json({ message: 'Masina reactivata cu succes', car: reactivatedCar });
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la reactivarea mașinii', error });
+            res.status(500).json({ message: 'Eroare la reactivarea masinii', error });
         }
     },
 
-    /**
-     * Obține toate mașinile unui client
-     */
+    //toate masinile unui client
     getClientCars: async (req: Request, res: Response) => {
         try {
             const { clientId } = req.params;
@@ -187,7 +165,7 @@ export const carController = {
 
             res.status(200).json(clientCars);
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la obținerea mașinilor clientului', error });
+            res.status(500).json({ message: 'Eroare la obtinerea masinilor clientului', error });
         }
     }
 };

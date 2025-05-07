@@ -2,21 +2,17 @@ import { Request, Response } from 'express';
 import { DataService } from '../utils/dataService';
 import { Appointment } from '../models/interfaces';
 
-// Inițializăm serviciul de date pentru programări
 const appointmentService = new DataService<Appointment>('appointments.json');
 
-/**
- * Controller pentru operațiunile cu programări
- */
+//controller programari
 export const appointmentController = {
-    /**
-     * Obține toate programările
-     */
+
+    //toate programarile
     getAllAppointments: async (req: Request, res: Response) => {
         try {
             let appointments = await appointmentService.getAll();
 
-            // Filtrări opționale
+            //filtrare
             const { clientId, carId, status, date } = req.query;
 
             if (clientId) {
@@ -32,7 +28,6 @@ export const appointmentController = {
             }
 
             if (date) {
-                // Filtrare după data programării (format YYYY-MM-DD)
                 const filterDate = new Date(date as string);
                 appointments = appointments.filter(app => {
                     const appDate = new Date(app.date);
@@ -44,31 +39,27 @@ export const appointmentController = {
 
             res.status(200).json(appointments);
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la obținerea programărilor', error });
+            res.status(500).json({ message: 'Eroare la obtinerea programarilor', error });
         }
     },
 
-    /**
-     * Obține o programare după ID
-     */
+    //programarea dupa id
     getAppointmentById: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
             const appointment = await appointmentService.getById(id);
 
             if (!appointment) {
-                return res.status(404).json({ message: 'Programarea nu a fost găsită' });
+                return res.status(404).json({ message: 'Programarea nu a fost gasita' });
             }
 
             res.status(200).json(appointment);
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la obținerea programării', error });
+            res.status(500).json({ message: 'Eroare la obtinerea programarii', error });
         }
     },
 
-    /**
-     * Adaugă o programare nouă
-     */
+    //post programare
     createAppointment: async (req: Request, res: Response) => {
         try {
             const {
@@ -76,21 +67,18 @@ export const appointmentController = {
                 contactMethod, notes
             } = req.body;
 
-            // Validare
             if (!clientId || !carId || !date || !duration || !serviceType || !contactMethod) {
-                return res.status(400).json({ message: 'Câmpurile obligatorii lipsesc' });
+                return res.status(400).json({ message: 'Campurile obligatorii lipsesc' });
             }
 
-            // Validare pentru durata (multiplu de 30 minute)
             if (duration % 30 !== 0) {
-                return res.status(400).json({ message: 'Durata trebuie să fie multiplu de 30 minute' });
+                return res.status(400).json({ message: 'Durata trebuie sa fie multiplu de 30 minute' });
             }
 
-            // Validare pentru intervalul orar 8-17
             const appointmentDate = new Date(date);
             const hour = appointmentDate.getHours();
             if (hour < 8 || hour >= 17) {
-                return res.status(400).json({ message: 'Programările sunt disponibile doar între 8:00 și 17:00' });
+                return res.status(400).json({ message: 'Programarile sunt disponibile doar intre 8:00 si 17:00' });
             }
 
             const appointmentData: Omit<Appointment, 'id'> = {
@@ -110,76 +98,68 @@ export const appointmentController = {
 
             res.status(201).json(newAppointment);
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la crearea programării', error });
+            res.status(500).json({ message: 'Eroare la crearea programarii', error });
         }
     },
 
-    /**
-     * Actualizează o programare existentă
-     */
+    //put programare
     updateAppointment: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
             const updates: Partial<Appointment> = req.body;
 
-            // Validare pentru durata (multiplu de 30 minute)
             if (updates.duration && updates.duration % 30 !== 0) {
-                return res.status(400).json({ message: 'Durata trebuie să fie multiplu de 30 minute' });
+                return res.status(400).json({ message: 'Durata trebuie sa fie multiplu de 30 minute' });
             }
 
-            // Validare pentru intervalul orar 8-17 dacă data este actualizată
             if (updates.date) {
                 const appointmentDate = new Date(updates.date);
                 const hour = appointmentDate.getHours();
                 if (hour < 8 || hour >= 17) {
-                    return res.status(400).json({ message: 'Programările sunt disponibile doar între 8:00 și 17:00' });
+                    return res.status(400).json({ message: 'Programarile sunt disponibile doar intre 8:00 si 17:00' });
                 }
             }
 
             const updatedAppointment = await appointmentService.update(id, updates);
 
             if (!updatedAppointment) {
-                return res.status(404).json({ message: 'Programarea nu a fost găsită' });
+                return res.status(404).json({ message: 'Programarea nu a fost gasita' });
             }
 
             res.status(200).json(updatedAppointment);
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la actualizarea programării', error });
+            res.status(500).json({ message: 'Eroare la actualizarea programarii', error });
         }
     },
 
-    /**
-     * Șterge o programare
-     */
+    //stergere programare
     deleteAppointment: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
             const success = await appointmentService.delete(id);
 
             if (!success) {
-                return res.status(404).json({ message: 'Programarea nu a fost găsită' });
+                return res.status(404).json({ message: 'Programarea nu a fost gasita' });
             }
 
-            res.status(200).json({ message: 'Programare ștearsă cu succes' });
+            res.status(200).json({ message: 'Programare stearsa cu succes' });
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la ștergerea programării', error });
+            res.status(500).json({ message: 'Eroare la stergerea programarii', error });
         }
     },
 
-    /**
-     * Anulează o programare
-     */
+    //anulare programare
     cancelAppointment: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
             const appointment = await appointmentService.getById(id);
 
             if (!appointment) {
-                return res.status(404).json({ message: 'Programarea nu a fost găsită' });
+                return res.status(404).json({ message: 'Programarea nu a fost gasita' });
             }
 
             if (appointment.status === 'cancelled') {
-                return res.status(400).json({ message: 'Programarea este deja anulată' });
+                return res.status(400).json({ message: 'Programarea este deja anulata' });
             }
 
             const updatedAppointment = await appointmentService.update(id, {
@@ -187,15 +167,13 @@ export const appointmentController = {
                 updatedAt: new Date()
             });
 
-            res.status(200).json({ message: 'Programare anulată cu succes', appointment: updatedAppointment });
+            res.status(200).json({ message: 'Programare anulata cu succes', appointment: updatedAppointment });
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la anularea programării', error });
+            res.status(500).json({ message: 'Eroare la anularea programarii', error });
         }
     },
 
-    /**
-     * Actualizează statusul unei programări
-     */
+    //put pentru status-ul programarii
     updateAppointmentStatus: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
@@ -211,18 +189,16 @@ export const appointmentController = {
             });
 
             if (!updatedAppointment) {
-                return res.status(404).json({ message: 'Programarea nu a fost găsită' });
+                return res.status(404).json({ message: 'Programarea nu a fost gasita' });
             }
 
             res.status(200).json(updatedAppointment);
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la actualizarea statusului programării', error });
+            res.status(500).json({ message: 'Eroare la actualizarea statusului programarii', error });
         }
     },
 
-    /**
-     * Obține toate programările unui client
-     */
+    //toate programarile unui client
     getClientAppointments: async (req: Request, res: Response) => {
         try {
             const { clientId } = req.params;
@@ -231,13 +207,11 @@ export const appointmentController = {
 
             res.status(200).json(clientAppointments);
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la obținerea programărilor clientului', error });
+            res.status(500).json({ message: 'Eroare la obtinerea programarilor clientului', error });
         }
     },
 
-    /**
-     * Obține toate programările pentru o mașină
-     */
+    //toate programarile unei masini
     getCarAppointments: async (req: Request, res: Response) => {
         try {
             const { carId } = req.params;
@@ -246,7 +220,7 @@ export const appointmentController = {
 
             res.status(200).json(carAppointments);
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la obținerea programărilor mașinii', error });
+            res.status(500).json({ message: 'Eroare la obtinerea programarilor masinii', error });
         }
     }
 };

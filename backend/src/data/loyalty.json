@@ -1,0 +1,38 @@
+[
+  {
+    "id": "9380b40c-3d7b-459b-8147-95f62b9a3930",
+    "clientId": "15954d52-173c-4d15-b09a-6666966ff89d",
+    "loyaltyClass": "A1",
+    "discountPercentage": 3,
+    "totalServiceCount": 2,
+    "totalSpent": 1200,
+    "lastVisitDate": "2025-05-07T12:45:55.853Z",
+    "nextEvaluationDate": "2025-08-05T12:45:55.853Z",
+    "createdAt": "2025-05-07T12:45:55.853Z",
+    "updatedAt": "2025-05-07T12:45:55.853Z"
+  },
+  {
+    "id": "3503879e-4079-4e07-8777-1765fdca0491",
+    "clientId": "6407a266-5986-4e86-8ab1-305d12e6dce1",
+    "loyaltyClass": "A3",
+    "discountPercentage": 9,
+    "totalServiceCount": 12,
+    "totalSpent": 6500,
+    "lastVisitDate": "2025-05-07T12:45:55.853Z",
+    "nextEvaluationDate": "2025-08-05T12:45:55.853Z",
+    "createdAt": "2025-05-07T12:45:55.853Z",
+    "updatedAt": "2025-05-07T12:45:55.853Z"
+  },
+  {
+    "id": "5736da3f-6617-4ee0-8587-6f4324bc2720",
+    "clientId": "7d6b9486-301b-46b0-a666-046d4baf6c92",
+    "loyaltyClass": "A2",
+    "discountPercentage": 6,
+    "totalServiceCount": 5,
+    "totalSpent": 3000,
+    "lastVisitDate": "2025-04-07T12:45:55.853Z",
+    "nextEvaluationDate": "2025-07-06T12:45:55.853Z",
+    "createdAt": "2025-05-07T12:45:55.853Z",
+    "updatedAt": "2025-05-07T12:45:55.853Z"
+  }
+]

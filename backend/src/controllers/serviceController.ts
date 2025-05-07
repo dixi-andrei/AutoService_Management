@@ -2,22 +2,17 @@ import { Request, Response } from 'express';
 import { DataService } from '../utils/dataService';
 import { Service, Appointment } from '../models/interfaces';
 
-// Inițializăm serviciile de date pentru reparații și programări
 const serviceService = new DataService<Service>('services.json');
 const appointmentService = new DataService<Appointment>('appointments.json');
 
-/**
- * Controller pentru operațiunile cu servicii de reparații
- */
 export const serviceController = {
-    /**
-     * Obține toate serviciile de reparații
-     */
+
+    //toate serviciile
     getAllServices: async (req: Request, res: Response) => {
         try {
             let services = await serviceService.getAll();
 
-            // Filtrare opțională după appointmentId
+            //filtrare dupa appointmentId
             const { appointmentId } = req.query;
             if (appointmentId) {
                 services = services.filter(service => service.appointmentId === appointmentId);
@@ -25,31 +20,27 @@ export const serviceController = {
 
             res.status(200).json(services);
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la obținerea serviciilor', error });
+            res.status(500).json({ message: 'Eroare la obtinerea serviciilor', error });
         }
     },
 
-    /**
-     * Obține un serviciu după ID
-     */
+    //serviciu dupa id
     getServiceById: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
             const service = await serviceService.getById(id);
 
             if (!service) {
-                return res.status(404).json({ message: 'Serviciul nu a fost găsit' });
+                return res.status(404).json({ message: 'Serviciul nu a fost gasit' });
             }
 
             res.status(200).json(service);
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la obținerea serviciului', error });
+            res.status(500).json({ message: 'Eroare la obtinerea serviciului', error });
         }
     },
 
-    /**
-     * Creează un nou serviciu de reparații (primire mașină)
-     */
+    //primire masina in service
     receiveCarForService: async (req: Request, res: Response) => {
         try {
             const {
@@ -59,32 +50,27 @@ export const serviceController = {
                 purpose
             } = req.body;
 
-            // Validare
             if (!appointmentId) {
-                return res.status(400).json({ message: 'ID-ul programării este obligatoriu' });
+                return res.status(400).json({ message: 'ID-ul programarii este obligatoriu' });
             }
 
-            // Verificăm dacă programarea există
             const appointment = await appointmentService.getById(appointmentId);
             if (!appointment) {
-                return res.status(404).json({ message: 'Programarea nu a fost găsită' });
+                return res.status(404).json({ message: 'Programarea nu a fost gasita' });
             }
 
-            // Verificăm dacă există deja un serviciu pentru această programare
             const existingServices = await serviceService.getAll();
             const serviceExists = existingServices.some(service => service.appointmentId === appointmentId);
 
             if (serviceExists) {
-                return res.status(400).json({ message: 'Există deja un serviciu pentru această programare' });
+                return res.status(400).json({ message: 'Exista deja un serviciu pentru aceasta programare' });
             }
 
-            // Actualizăm statusul programării la "in-progress"
             await appointmentService.update(appointmentId, {
                 status: 'in-progress',
                 updatedAt: new Date()
             });
 
-            // Creăm serviciul
             const serviceData: Omit<Service, 'id'> = {
                 appointmentId,
                 initialState: {
@@ -111,9 +97,7 @@ export const serviceController = {
         }
     },
 
-    /**
-     * Actualizează informațiile despre procesarea unei mașini
-     */
+    //procesare masina
     processCarService: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
@@ -122,30 +106,25 @@ export const serviceController = {
                 actualDuration
             } = req.body;
 
-            // Validare
             if (!operations || !actualDuration) {
-                return res.status(400).json({ message: 'Câmpurile obligatorii lipsesc' });
+                return res.status(400).json({ message: 'Campurile obligatorii lipsesc' });
             }
 
-            // Validare pentru durata efectivă (multiplu de 10 minute)
             if (actualDuration % 10 !== 0) {
-                return res.status(400).json({ message: 'Durata efectivă trebuie să fie multiplu de 10 minute' });
+                return res.status(400).json({ message: 'Durata trebuie sa fie multiplu de 10 minute' });
             }
 
-            // Obținem serviciul
             const service = await serviceService.getById(id);
             if (!service) {
-                return res.status(404).json({ message: 'Serviciul nu a fost găsit' });
+                return res.status(404).json({ message: 'Serviciul nu a fost gasit' });
             }
 
-            // Actualizăm serviciul
             const updatedService = await serviceService.update(id, {
                 operations,
                 actualDuration,
                 updatedAt: new Date()
             });
 
-            // Actualizăm statusul programării la "completed"
             await appointmentService.update(service.appointmentId, {
                 status: 'completed',
                 updatedAt: new Date()
@@ -157,23 +136,20 @@ export const serviceController = {
         }
     },
 
-    /**
-     * Actualizează un serviciu existent
-     */
+    //actualizare serviciu
     updateService: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
             const updates: Partial<Service> = req.body;
 
-            // Validare pentru durata efectivă (multiplu de 10 minute)
             if (updates.actualDuration && updates.actualDuration % 10 !== 0) {
-                return res.status(400).json({ message: 'Durata efectivă trebuie să fie multiplu de 10 minute' });
+                return res.status(400).json({ message: 'Durata trebuie sa fie multiplu de 10 minute' });
             }
 
             const updatedService = await serviceService.update(id, updates);
 
             if (!updatedService) {
-                return res.status(404).json({ message: 'Serviciul nu a fost găsit' });
+                return res.status(404).json({ message: 'Serviciul nu a fost gasit' });
             }
 
             res.status(200).json(updatedService);
@@ -182,27 +158,23 @@ export const serviceController = {
         }
     },
 
-    /**
-     * Șterge un serviciu
-     */
+    //stergere serviciu
     deleteService: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
             const success = await serviceService.delete(id);
 
             if (!success) {
-                return res.status(404).json({ message: 'Serviciul nu a fost găsit' });
+                return res.status(404).json({ message: 'Serviciul nu a fost gasit' });
             }
 
-            res.status(200).json({ message: 'Serviciu șters cu succes' });
+            res.status(200).json({ message: 'Serviciu sters cu succes' });
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la ștergerea serviciului', error });
+            res.status(500).json({ message: 'Eroare la stergerea serviciului', error });
         }
     },
 
-    /**
-     * Obține serviciul asociat unei programări
-     */
+    //serviciu dupa programare
     getServiceByAppointment: async (req: Request, res: Response) => {
         try {
             const { appointmentId } = req.params;
@@ -210,12 +182,12 @@ export const serviceController = {
             const service = services.find(s => s.appointmentId === appointmentId);
 
             if (!service) {
-                return res.status(404).json({ message: 'Nu a fost găsit niciun serviciu pentru această programare' });
+                return res.status(404).json({ message: 'Nu a fost gasit niciun serviciu pentru aceasta programare' });
             }
 
             res.status(200).json(service);
         } catch (error) {
-            res.status(500).json({ message: 'Eroare la obținerea serviciului', error });
+            res.status(500).json({ message: 'Eroare la obtinerea serviciului', error });
         }
     }
 };

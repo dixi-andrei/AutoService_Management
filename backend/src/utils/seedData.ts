@@ -1,18 +1,17 @@
 import fs from 'fs';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
-import { Client, Car, Appointment, Service } from '../models/interfaces';
+import { Client, Car, Appointment, Service, LoyaltyProgram } from '../models/interfaces';
 
-// Funcție pentru generarea datelor de test
 export const seedData = async () => {
     const dataDir = path.join(__dirname, '..', 'data');
 
-    // Creează directorul dacă nu există
+    //aici in cazul in care nu exista folderul data il creez eu
     if (!fs.existsSync(dataDir)) {
         fs.mkdirSync(dataDir, { recursive: true });
     }
 
-    // Generăm câțiva clienți
+    //clientii
     const clients: Client[] = [
         {
             id: uuidv4(),
@@ -46,7 +45,7 @@ export const seedData = async () => {
         }
     ];
 
-    // Generăm mașini pentru fiecare client
+    //masinile
     const cars: Car[] = [
         {
             id: uuidv4(),
@@ -114,7 +113,7 @@ export const seedData = async () => {
         }
     ];
 
-    // Creăm date pentru setare corectă a datelor programărilor
+    //creez date pentru setarea corecta a programarilor
     const today = new Date();
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
@@ -122,7 +121,7 @@ export const seedData = async () => {
     const yesterday = new Date(today);
     yesterday.setDate(today.getDate() - 1);
 
-    // Setăm orele corect
+    //am setat ora corecta
     const todayAt10 = new Date(today);
     todayAt10.setHours(10, 0, 0, 0);
 
@@ -132,7 +131,7 @@ export const seedData = async () => {
     const yesterdayAt9 = new Date(yesterday);
     yesterdayAt9.setHours(9, 0, 0, 0);
 
-    // Generăm câteva programări
+    //programarile
     const appointments: Appointment[] = [
         {
             id: uuidv4(),
@@ -152,8 +151,8 @@ export const seedData = async () => {
             clientId: clients[1].id,
             carId: cars[1].id,
             date: tomorrowAt14,
-            duration: 120, // 120 minute
-            serviceType: 'Reparație frane',
+            duration: 120,
+            serviceType: 'Reparatie frane',
             contactMethod: 'email',
             status: 'scheduled',
             notes: 'Clientul a raportat zgomote la franare',
@@ -165,7 +164,7 @@ export const seedData = async () => {
             clientId: clients[2].id,
             carId: cars[3].id,
             date: yesterdayAt9,
-            duration: 90, // 90 minute
+            duration: 90,
             serviceType: 'Verificare sistem hibrid',
             contactMethod: 'in-person',
             status: 'completed',
@@ -175,20 +174,20 @@ export const seedData = async () => {
         }
     ];
 
-    // Generăm un serviciu completat pentru programarea finalizată
+    //generare service complet
     const services: Service[] = [
         {
             id: uuidv4(),
             appointmentId: appointments[2].id,
             initialState: {
-                visualIssues: ['Zgârietură pe ușa șoferului'],
-                clientReportedIssues: ['Bateria se descarcă rapid', 'Autonomie scăzută în modul electric'],
+                visualIssues: ['Zgarietura pe usa soferului'],
+                clientReportedIssues: ['Bateria se descarca rapid', 'Autonomie scazuta in modul electric'],
                 purpose: 'Verificare sistem hibrid'
             },
             operations: {
-                description: 'Verificare completă sistem hibrid. Actualizare software management baterie.',
+                description: 'Verificare completa sistem hibrid. Actualizare software management baterie.',
                 replacedParts: ['Filtru habitaclu'],
-                detectedIssues: ['Baterie hibrid degradată - autonomie 70% din capacitatea inițială'],
+                detectedIssues: ['Baterie hibrid degradata - autonomie 70% din capacitatea initiala'],
                 resolvedIssues: true
             },
             actualDuration: 100, // 100 minute
@@ -197,16 +196,56 @@ export const seedData = async () => {
         }
     ];
 
-    // Scriem datele în fișiere JSON
+    //generare date loyalty
+    const loyalty: LoyaltyProgram[] = [
+        {
+            id: uuidv4(),
+            clientId: clients[0].id,
+            loyaltyClass: 'A1',
+            discountPercentage: 3,
+            totalServiceCount: 2,
+            totalSpent: 1200,
+            lastVisitDate: new Date(),
+            nextEvaluationDate: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 zile
+            createdAt: new Date(),
+            updatedAt: new Date()
+        },
+        {
+            id: uuidv4(),
+            clientId: clients[1].id,
+            loyaltyClass: 'A3',
+            discountPercentage: 9,
+            totalServiceCount: 12,
+            totalSpent: 6500,
+            lastVisitDate: new Date(),
+            nextEvaluationDate: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 zile
+            createdAt: new Date(),
+            updatedAt: new Date()
+        },
+        {
+            id: uuidv4(),
+            clientId: clients[2].id,
+            loyaltyClass: 'A2',
+            discountPercentage: 6,
+            totalServiceCount: 5,
+            totalSpent: 3000,
+            lastVisitDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000), // 30 zile in trecut
+            nextEvaluationDate: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000), // 60 zile in viitor
+            createdAt: new Date(),
+            updatedAt: new Date()
+        }
+    ];
+
+    //scrierea in fisierele json a datelor
     await fs.promises.writeFile(path.join(dataDir, 'clients.json'), JSON.stringify(clients, null, 2));
     await fs.promises.writeFile(path.join(dataDir, 'cars.json'), JSON.stringify(cars, null, 2));
     await fs.promises.writeFile(path.join(dataDir, 'appointments.json'), JSON.stringify(appointments, null, 2));
     await fs.promises.writeFile(path.join(dataDir, 'services.json'), JSON.stringify(services, null, 2));
+    await fs.promises.writeFile(path.join(dataDir, 'loyalty.json'), JSON.stringify(loyalty, null, 2));
 
     console.log('Date de test generate cu succes!');
 };
 
-// Rulați această funcție pentru a genera date de test
 if (require.main === module) {
     seedData().catch(err => console.error('Eroare la generarea datelor de test:', err));
 }

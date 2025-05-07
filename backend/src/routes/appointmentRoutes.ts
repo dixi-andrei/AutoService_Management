@@ -3,7 +3,7 @@ import { appointmentController } from '../controllers/appointmentController';
 
 const router = express.Router();
 
-// Rute pentru programări
+//rutele clasice pentru programari
 router.get('/', appointmentController.getAllAppointments);
 router.get('/:id', appointmentController.getAppointmentById);
 router.post('/', appointmentController.createAppointment);
@@ -12,7 +12,7 @@ router.delete('/:id', appointmentController.deleteAppointment);
 router.patch('/:id/cancel', appointmentController.cancelAppointment);
 router.patch('/:id/status', appointmentController.updateAppointmentStatus);
 
-// Rute specializate pentru programările unui client sau mașini
+//rutele in functie de client si masina
 router.get('/client/:clientId', appointmentController.getClientAppointments);
 router.get('/car/:carId', appointmentController.getCarAppointments);
 

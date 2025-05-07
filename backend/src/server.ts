@@ -4,31 +4,29 @@ import path from 'path';
 import fs from 'fs';
 import { seedData } from './utils/seedData';
 
-// Importăm rutele
 import clientRoutes from './routes/clientRoutes';
 import carRoutes from './routes/carRoutes';
 import appointmentRoutes from './routes/appointmentRoutes';
 import serviceRoutes from './routes/serviceRoutes';
+import loyaltyRoutes from './routes/loyaltyRoutes';
 
-// Inițializare aplicație Express
+//instanta aplicatiei
 const app: Application = express();
-const PORT = process.env.PORT || 54321; // Un port foarte neobișnuit
+const PORT = process.env.PORT || 54321;
 
-// Middleware-uri
+//midleware-urile
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Verifică și inițializează fișierele de date dacă nu există
+//verific si initializez fisierile de date daca exista
 const dataDir = path.join(__dirname, 'data');
 if (!fs.existsSync(dataDir)) {
     fs.mkdirSync(dataDir, { recursive: true });
 }
 
 
-
-
-// Verificăm dacă există deja date sau trebuie să le generăm
+//aici verific daca exista deja date de test sau le generez
 const initData = async () => {
     const clientsPath = path.join(dataDir, 'clients.json');
     if (!fs.existsSync(clientsPath) || fs.readFileSync(clientsPath, 'utf8') === '[]') {
@@ -39,24 +37,22 @@ const initData = async () => {
     }
 };
 
-// Inițializăm datele
-initData().catch(err => console.error('Eroare la inițializarea datelor:', err));
+//initializarea datelor
+initData().catch(err => console.error('Eroare la initializarea datelor:', err));
 
-// Definim rutele API
+//rutele api-urilor
 app.use('/api/clients', clientRoutes);
 app.use('/api/cars', carRoutes);
 app.use('/api/appointments', appointmentRoutes);
 app.use('/api/services', serviceRoutes);
+app.use('/api/loyalty', loyaltyRoutes);
 
-// Rută de bază pentru a verifica dacă serverul funcționează
 app.get('/', (req, res) => {
-    res.send('API pentru Service Auto funcționează!');
+    res.send('API pentru Service Auto functioneaza!');
 });
 
-// Pornirea serverului
 app.listen(PORT, () => {
-    console.log(`Serverul rulează pe portul ${PORT}`);
+    console.log(`Serverul ruleaza pe portul ${PORT}`);
 });
 
-// Nu exportăm app ca default
 export { app };

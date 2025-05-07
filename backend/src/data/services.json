@@ -1,29 +1,29 @@
 [
   {
-    "id": "0c7b7857-ad3a-4973-98ed-df39d2732750",
-    "appointmentId": "b2b2e51e-b72d-45a7-ae99-f6ed7cfdbe1c",
+    "id": "98ec345b-8d4d-4faa-820a-a821aa83f405",
+    "appointmentId": "84a1498c-10cc-4ee1-bed6-30beba2509b8",
     "initialState": {
       "visualIssues": [
-        "Zgârietură pe ușa șoferului"
+        "Zgarietura pe usa soferului"
       ],
       "clientReportedIssues": [
-        "Bateria se descarcă rapid",
-        "Autonomie scăzută în modul electric"
+        "Bateria se descarca rapid",
+        "Autonomie scazuta in modul electric"
       ],
       "purpose": "Verificare sistem hibrid"
     },
     "operations": {
-      "description": "Verificare completă sistem hibrid. Actualizare software management baterie.",
+      "description": "Verificare completa sistem hibrid. Actualizare software management baterie.",
       "replacedParts": [
         "Filtru habitaclu"
       ],
       "detectedIssues": [
-        "Baterie hibrid degradată - autonomie 70% din capacitatea inițială"
+        "Baterie hibrid degradata - autonomie 70% din capacitatea initiala"
       ],
       "resolvedIssues": true
     },
     "actualDuration": 100,
-    "createdAt": "2025-05-07T11:25:43.433Z",
-    "updatedAt": "2025-05-07T11:25:43.433Z"
+    "createdAt": "2025-05-07T12:45:55.853Z",
+    "updatedAt": "2025-05-07T12:45:55.853Z"
   }
 ]
